@@ -101,8 +101,8 @@
 <nav>
 
     <div class="logo">
-        <i class="fa-solid fa-user"></i>
-        Login
+        <i class="fa-solid fa-user-lock"></i>
+        Login Portal
     </div>
 
     <div class="menu">

@@ -34,7 +34,11 @@ pageEncoding="UTF-8"%>
             color:white;
             font-size:28px;
             font-weight:bold;
-        }
+        }a {
+    color: white;               /* Change link text color */
+    text-decoration: none;     /* Remove underline */
+}
+
 
         .menu a{
             color:white;
@@ -81,8 +85,9 @@ pageEncoding="UTF-8"%>
 <nav>
 
     <div class="logo">
-        <i class="fa-solid fa-user-lock"></i>
-        Login Portal
+
+        <a href="home.jsp"style=""><i class="fa-solid fa-user-lock"></i>
+            Login Portal</a>
     </div>
 
     <div class="menu">
