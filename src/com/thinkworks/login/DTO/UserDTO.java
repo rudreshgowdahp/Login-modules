@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 @NoArgsConstructor
 
 public class UserDTO  extends HttpServlet {
+    private String loginId;
     private String name;
     private String email;
     private String phoneNumber;
