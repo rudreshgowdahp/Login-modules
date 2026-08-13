@@ -87,6 +87,10 @@
     <form action="CreateLogin" method="post">
 
 
+        <label>LoginId <span style="color:red;"> *</span>:</label>
+        <input type="number" name="LoginId"  id="loginId" onchange="validateLoginId()" oninput="validateform()">
+        <span id="loginIdError" style="color:red;"></span>
+
 
 
         <label>Full Name <span style="color:red;">*</span>:</label> <span id="nameError" style="color:red;"></span>
@@ -126,6 +130,26 @@
 
 </body>
 <script>
+    function validateLoginId() {
+    let loginId = document.getElementById("loginId").value.trim();
+    let error = document.getElementById("loginIdError");
+
+    let pattern = /^[A-Za-z0-9]{5,20}$/;
+
+    if (loginId === "") {
+        document.getElementById("loginIdError").innerHTML ="Login Id is required";
+        return false;
+    }
+
+    if (!pattern.test(loginId)) {
+        document.getElementById("loginIdError").innerHTML = "Login ID must be 5-20 characters (letters and numbers only)";
+        return false;
+    }
+    else {
+        document.getElementById("loginIdError").innerHTML = "";
+        return true;
+    }
+    }
 
     function validateName(){
        let name = document.getElementById("name").value.trim();
@@ -245,7 +269,8 @@ function validateConfirmPassword() {
 }
 }
     function validateform(){
-     if(validateName()&&
+     if(validateLoginId()&&
+        validateName()&&
         validateEmail()&&
         validatePhoneNumber()&&
         validatePassword()&&
