@@ -1,11 +1,29 @@
 package com.thinkworks.login.service;
 
 import com.thinkworks.login.DTO.UserDTO;
+import com.thinkworks.login.repository.UserRepository;
+import com.thinkworks.login.repository.UserRepositoryImpl;
 
-  public class UserServiceImp implements UserService {
+import java.sql.SQLException;
+
+public class UserServiceImp implements UserService {
 
     @Override
-    public String validateAndSave(UserDTO userDTO) {
+    public String validateAndSave(UserDTO userDTO) throws SQLException, ClassNotFoundException {
+
+        // Login id Validation
+        if (userDTO.getLoginId() == null || userDTO.getLoginId().trim().isEmpty()) {
+            return " Login Id is required";
+        }
+        String loginId = userDTO.getLoginId().trim();
+
+        if (loginId.length() < 5 || loginId.length() > 20) {
+            return "Login ID should be between 5 and 20 characters";
+        }
+
+        if (!loginId.matches("^[A-Za-z0-9]+$")) {
+            return "Login ID should contain only letters and numbers";
+        }
 
         // Name Validation
         if (userDTO.getName() == null || userDTO.getName().trim().isEmpty()) {
@@ -60,6 +78,9 @@ import com.thinkworks.login.DTO.UserDTO;
         if (!userDTO.getPassword().equals(userDTO.getConfirmPassword())) {
             return "Password and Confirm Password do not match";
         }
+        UserRepository userRepository = new UserRepositoryImpl();
+        userRepository.save(userDTO);
+        userRepository.findAll();
 
         return "Registration Successful";
     }
