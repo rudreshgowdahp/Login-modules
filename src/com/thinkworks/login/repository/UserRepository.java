@@ -8,4 +8,8 @@ public interface UserRepository {
     boolean save(UserDTO userDTO) throws ClassNotFoundException, SQLException;
 
     UserDTO  findAll() throws SQLException;
+
+    UserDTO findById( int id) throws SQLException;
+
+    UserDTO findByEmail(String email) throws SQLException, ClassNotFoundException;
 }
