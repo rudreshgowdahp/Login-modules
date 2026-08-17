@@ -108,8 +108,20 @@ pageEncoding="UTF-8"%>
     </p>
 
 </div>
+<form action="fetchById" method="get">
+    <input type="text" name="id" placeholder="Search by id">
+    <button>Submit</button>
+</form>
+
+
+Name:${dto.name}<br>
+Email:${dto.email}<br>
+PhoneNumber:${dto.phoneNumber}<br>
+password:${password}<br>
 
 <footer>
     © 2026 Login Portal | All Rights Reserved.
 </footer>
+</body>
+</html>
 
