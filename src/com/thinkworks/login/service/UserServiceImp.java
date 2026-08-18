@@ -7,6 +7,31 @@ import com.thinkworks.login.repository.UserRepositoryImpl;
 import java.sql.SQLException;
 
 public class UserServiceImp implements UserService {
+    private UserRepository userRepository = new UserRepositoryImpl();
+    @Override
+    public UserDTO validateLogin(String email, String password) throws SQLException, ClassNotFoundException {
+
+
+
+        UserDTO user = userRepository.findByEmail(email);
+
+        if (user == null) {
+            return null;
+        }
+
+        if (password.equals(user.getPassword())) {
+            return user;
+        }
+        return null;
+    }
+
+    @Override
+    public UserDTO fetchByid(int id) throws SQLException {
+        UserRepositoryImpl userRepository = new UserRepositoryImpl();
+        UserDTO userDTO = userRepository.findById(id);
+
+        return userDTO;
+    }
 
     @Override
     public String validateAndSave(UserDTO userDTO) throws SQLException, ClassNotFoundException {
