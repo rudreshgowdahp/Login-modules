@@ -141,16 +141,16 @@
 
     <h2>User Login</h2>
     <form action="login" method="post">
-
         <label>Email <span style="color:red;"> *</span>:</label>
         <input type="email" name="email" id="email" placeholder="Enter Email" onchange="validateEmail()" oninput="validateForm()">
         <span id="EmailError" style="color:red;"></span>
 
 
-
         <label>Password <span style="color:red;"> *</span>:</label>
         <input type="password" name="password"  id="password" placeholder="Enter Password"  onchange="validatePassword()" oninput="validateForm()">
         <span id="PasswordError" style="color:red;"></span>
+        <span style="color: red;">${message}</span>
+
 
 
         <button type="submit" id="loginBtn" disabled>Login</button>
@@ -195,32 +195,7 @@
     if (password.length < 8) {
         document.getElementById("PasswordError").innerHTML = "Password must be at least 8 characters";
         return false;
-    }
-
-
-    if (!/[A-Z]/.test(password)) {
-        document.getElementById("PasswordError").innerHTML = "Password must contain at least one uppercase letter";
-        return false;
-    }
-
-
-    if (!/[a-z]/.test(password)) {
-        document.getElementById("PasswordError").innerHTML = "Password must contain at least one lowercase letter";
-        return false;
-    }
-
-
-    if (!/[0-9]/.test(password)) {
-        document.getElementById("PasswordError").innerHTML = "Password must contain at least one number";
-        return false;
-    }
-
-
-    if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-        document.getElementById("PasswordError").innerHTML = "Password must contain at least one special character";
-        return false;
-    }
-    else{
+    } else{
     document.getElementById("PasswordError").innerHTML = "";
     return true;
 }
