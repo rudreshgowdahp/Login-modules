@@ -9,5 +9,9 @@ public interface UserService {
     // Registration validation
     String validateAndSave(UserDTO userDTO) throws SQLException, ClassNotFoundException;
 
+    UserDTO fetchByid(int id) throws SQLException;
+
+    UserDTO validateLogin(String email, String password) throws SQLException, ClassNotFoundException;
+
 
 }

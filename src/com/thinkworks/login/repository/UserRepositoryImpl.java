@@ -17,10 +17,12 @@ public class UserRepositoryImpl implements UserRepository{
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1,email);
         ResultSet resultSet = preparedStatement.executeQuery();
+
         if (resultSet.next()){
             UserDTO user = new UserDTO();
             user.setEmail(resultSet.getString("email"));
             user.setPassword(resultSet.getString("password"));
+            System.out.println(user);
             return user;
         }
 
@@ -81,7 +83,7 @@ public class UserRepositoryImpl implements UserRepository{
         String url = "jdbc:mysql://localhost:3306/thinkworks";
         Connection connection = DriverManager.getConnection(url, name, password);
         Statement statement = connection.createStatement();
-        String sql = "insert into userdetails values(0,'" + userDTO.getName()+"','" + userDTO.getEmail()+"','" + userDTO.getPhoneNumber()+" ','" + userDTO.getPassword()+" ')";
+        String sql = "insert into userdetcails values(0,'" + userDTO.getName()+"','" + userDTO.getEmail()+"','" + userDTO.getPhoneNumber()+" ','" + userDTO.getPassword()+" ')";
         statement.execute(sql);
       return false;
     }
