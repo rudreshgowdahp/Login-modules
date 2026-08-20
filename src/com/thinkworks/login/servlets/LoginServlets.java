@@ -19,7 +19,8 @@ public class LoginServlets extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("login");
+
+        System.out.println("called");
         UserDTO userDTO = new UserDTO();
         userDTO.setEmail(req.getParameter("email"));
         userDTO.setPassword(req.getParameter("password"));
@@ -31,12 +32,13 @@ public class LoginServlets extends HttpServlet {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+        System.out.println(user);
         if (user != null) {
                 HttpSession session = req.getSession();
                 session.setAttribute("user", user);
-                resp.sendRedirect("home.jsp");
+            req.getRequestDispatcher("home.jsp").forward(req, resp);
             } else {
-                req.setAttribute("error", "Invalid email or Password");
+                req.setAttribute("message", "Invalid email or Password");
                 req.getRequestDispatcher("login.jsp").forward(req, resp);
             }
 

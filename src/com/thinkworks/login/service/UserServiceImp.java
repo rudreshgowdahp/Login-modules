@@ -15,13 +15,18 @@ public class UserServiceImp implements UserService {
 
         UserDTO user = userRepository.findByEmail(email);
 
+        System.out.println(user +"In service");
+
         if (user == null) {
+            System.out.println("In 1st ");
             return null;
         }
 
         if (password.equals(user.getPassword())) {
+            System.out.println("In 2nd");
             return user;
         }
+
         return null;
     }
 
